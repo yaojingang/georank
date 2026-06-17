@@ -214,13 +214,15 @@ DEFAULT_FRONTEND_MODULES = {
     ],
 }
 DEFAULT_HOMEPAGE_RUNTIME = {
-    "mode": "default",
-    "active_release_id": None,
+    "mode": "custom",
+    "active_release_id": "f7e16e7c-e1aa-4e39-951b-4c274dd05175",
     "fallback_enabled": True,
     "company_list_path": "/companies",
     "updated_at": None,
     "updated_by": None,
 }
+DEFAULT_HOMEPAGE_RELEASE_ID = DEFAULT_HOMEPAGE_RUNTIME["active_release_id"]
+DEFAULT_HOMEPAGE_RELEASE_TITLE = "首页 8 模块工作台入口 2026-06-16"
 VALID_AI_ACCESS_MODES = {
     "platform_unlimited",
     "daily_quota",
@@ -598,6 +600,7 @@ def _build_homepage_runtime_config(values: dict[str, Any]) -> dict[str, Any]:
     raw = values.get("homepage_runtime")
     if not isinstance(raw, dict):
         raw = {}
+    raw = {**DEFAULT_HOMEPAGE_RUNTIME, **raw}
 
     mode = _pick_string(raw.get("mode"), DEFAULT_HOMEPAGE_RUNTIME["mode"])
     if mode not in {"default", "custom"}:

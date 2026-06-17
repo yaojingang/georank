@@ -5048,6 +5048,7 @@ ${pages.map(p => p === '…'
 
             list.innerHTML = releases.map(release => {
                 const isActive = release.status === 'active';
+                const isBuiltin = Boolean(release.is_builtin);
                 const statusClass = isActive ? 'bg-green-50 text-green-700' : release.status === 'failed' ? 'bg-red-50 text-red-700' : 'bg-blue-50 text-blue-700';
                 const statusText = isActive ? '启用中' : release.status === 'failed' ? '失败' : release.status === 'archived' ? '已归档' : '草稿';
                 return `
@@ -5057,6 +5058,7 @@ ${pages.map(p => p === '…'
                                 <div class="flex items-center gap-2">
                                     <h4 class="truncate text-sm font-extrabold text-slate-900">${escapeHtml(release.title || '未命名首页')}</h4>
                                     <span class="admin-pill ${statusClass}">${statusText}</span>
+                                    ${isBuiltin ? '<span class="admin-pill bg-slate-50 text-slate-600">内置</span>' : ''}
                                 </div>
                                 <p class="mt-1 text-xs leading-5 text-slate-500">
                                     ${escapeHtml(release.source_type === 'zip_package' ? 'HTML 包' : '单文件 HTML')} ·
@@ -5073,7 +5075,11 @@ ${pages.map(p => p === '…'
                                     <button class="btn admin-btn-secondary px-3 py-2 rounded-lg text-xs" disabled title="当前启用版本不能删除">当前版本</button>
                                 ` : `
                                     <button class="btn btn-primary px-3 py-2 rounded-lg text-xs" data-homepage-activate="${escapeHtml(release.id)}">启用</button>
-                                    <button class="btn admin-btn-secondary px-3 py-2 rounded-lg text-xs" data-homepage-delete="${escapeHtml(release.id)}">删除</button>
+                                    ${isBuiltin ? `
+                                        <button class="btn admin-btn-secondary px-3 py-2 rounded-lg text-xs" disabled title="内置首页版本不能删除">内置版本</button>
+                                    ` : `
+                                        <button class="btn admin-btn-secondary px-3 py-2 rounded-lg text-xs" data-homepage-delete="${escapeHtml(release.id)}">删除</button>
+                                    `}
                                 `}
                             </div>
                         </div>

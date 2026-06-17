@@ -5,9 +5,11 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 from app.services.runtime_settings import (  # noqa: E402
+    DEFAULT_HOMEPAGE_RELEASE_ID,
     _build_ai_runtime_config,
     _build_diagnostic_rule_config,
     _build_frontend_module_config,
+    _build_homepage_runtime_config,
     _build_solution_template_config,
 )
 
@@ -172,6 +174,27 @@ class RuntimeSettingsTests(unittest.TestCase):
         self.assertFalse(modules["diagnostic"]["enabled"])
         self.assertTrue(modules["tools"]["enabled"])
         self.assertNotIn("unknown", modules)
+
+    def test_build_homepage_runtime_config_defaults_to_builtin_homepage(self):
+        config = _build_homepage_runtime_config({})
+
+        self.assertEqual(config["mode"], "custom")
+        self.assertEqual(config["active_release_id"], DEFAULT_HOMEPAGE_RELEASE_ID)
+        self.assertEqual(config["company_list_path"], "/companies")
+
+    def test_build_homepage_runtime_config_can_restore_company_homepage(self):
+        config = _build_homepage_runtime_config(
+            {
+                "homepage_runtime": {
+                    "mode": "default",
+                    "active_release_id": None,
+                    "company_list_path": "/companies",
+                }
+            }
+        )
+
+        self.assertEqual(config["mode"], "default")
+        self.assertIsNone(config["active_release_id"])
 
 
 if __name__ == "__main__":

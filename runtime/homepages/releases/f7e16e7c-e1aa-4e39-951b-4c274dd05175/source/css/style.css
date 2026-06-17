@@ -1,0 +1,1308 @@
+/* ===== GEORankHub — 亮色主题，风格对齐 localhost:3009 ===== */
+
+/* ---- 变量 ---- */
+:root {
+  --primary:        #2563EB;
+  --primary-dark:   #1E40AF;
+  --primary-light:  #3B82F6;
+  --primary-bg:     #EFF6FF;
+  --primary-border: #DBEAFE;
+
+  --bg:        #FFFFFF;
+  --bg-soft:   #FFFFFF;
+  --surface:   #FFFFFF;
+
+  --text:       #2D3435;
+  --text-sub:   #596061;
+  --text-muted: #94A3B8;
+  --text-sec:   #64748B;
+
+  --border:       #F1F5F9;
+  --border-card:  #E2E8F0;
+
+  --radius-sm:  8px;
+  --radius:     12px;
+  --radius-lg:  16px;
+  --radius-xl:  20px;
+
+  --header-h:   64px;
+  --container:  1200px;
+
+  --shadow-nav:   0 10px 40px rgba(25, 27, 35, 0.04);
+  --shadow-card:  0 8px 26px rgba(15, 23, 42, 0.045);
+  --shadow-hover: 0 16px 42px rgba(15, 23, 42, 0.08);
+  --shadow-blue:  0 14px 30px rgba(37, 99, 235, 0.18);
+
+  --font-head: "Manrope", "PingFang SC", "Microsoft YaHei", sans-serif;
+  --font-body: "Inter", "PingFang SC", "Microsoft YaHei", sans-serif;
+}
+
+/* ---- Reset ---- */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: calc(var(--header-h) + 16px); font-size: 16px; }
+body {
+  font-family: var(--font-body);
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+img { max-width: 100%; display: block; }
+a { color: inherit; text-decoration: none; }
+ul, ol { list-style: none; }
+
+.container {
+  width: min(var(--container), calc(100% - 48px));
+  margin-inline: auto;
+}
+.pc-only { display: inline; }
+
+/* ---- Material Symbols 对齐 ---- */
+.material-symbols-outlined {
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+  vertical-align: middle;
+  line-height: 1;
+}
+
+/* ---- 按钮 ---- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 12px 24px;
+  border-radius: var(--radius);
+  font-family: var(--font-head);
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+  cursor: pointer;
+  border: none;
+}
+.btn .material-symbols-outlined { font-size: 18px; }
+
+.btn-primary {
+  background: var(--primary);
+  color: #fff;
+  box-shadow: var(--shadow-blue);
+}
+.btn-primary:hover {
+  background: var(--primary-dark);
+  transform: translateY(-1px);
+  box-shadow: 0 20px 40px rgba(37, 99, 235, 0.26);
+}
+
+.btn-ghost {
+  background: var(--bg-soft);
+  color: var(--text);
+  border: 1px solid var(--border-card);
+}
+.btn-ghost:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+  transform: translateY(-1px);
+}
+
+.btn-primary-invert {
+  background: #fff;
+  color: var(--primary);
+  font-family: var(--font-head);
+  font-size: 14px;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 12px 24px;
+  border-radius: var(--radius);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+.btn-primary-invert:hover { transform: translateY(-1px); box-shadow: 0 10px 28px rgba(0,0,0,0.15); }
+
+.btn-outline-invert {
+  background: transparent;
+  color: #fff;
+  border: 1.5px solid rgba(255,255,255,0.6);
+  font-family: var(--font-head);
+  font-size: 14px;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 12px 24px;
+  border-radius: var(--radius);
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+.btn-outline-invert:hover { border-color: #fff; background: rgba(255,255,255,0.1); }
+
+/* ---- 顶部导航 ---- */
+.site-header {
+  position: fixed;
+  inset: 0 0 auto 0;
+  height: var(--header-h);
+  z-index: 100;
+  background: rgba(255, 255, 255, 0.86);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+  box-shadow: var(--shadow-nav);
+  transition: box-shadow 0.3s ease;
+}
+.site-header.scrolled { box-shadow: 0 10px 40px rgba(25,27,35,0.08); }
+
+.nav {
+  height: var(--header-h);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font-family: var(--font-head);
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--primary-dark);
+  flex-shrink: 0;
+}
+.logo-mark {
+  width: 32px; height: 32px;
+  display: grid; place-items: center;
+  border-radius: 8px;
+  background: var(--primary);
+  color: #fff;
+  font-size: 16px;
+  font-weight: 800;
+}
+.logo-text em {
+  font-style: normal;
+  color: var(--primary);
+}
+
+.nav-menu {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.nav-menu a {
+  font-family: var(--font-head);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-sec);
+  padding: 6px 12px;
+  border-radius: var(--radius-sm);
+  transition: color 0.15s ease, background 0.15s ease;
+}
+.nav-menu a:hover { color: var(--text); background: var(--bg-soft); }
+.nav-menu .nav-cta {
+  margin-left: 8px;
+  padding: 8px 18px;
+  background: var(--primary);
+  color: #fff;
+  border-radius: var(--radius);
+}
+.nav-menu .nav-cta:hover { background: var(--primary-dark); }
+
+.nav-toggle {
+  display: none;
+  background: none;
+  border: 0;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: var(--radius-sm);
+}
+.nav-toggle span {
+  display: block;
+  width: 22px; height: 2px;
+  margin: 4px 0;
+  background: var(--text);
+  border-radius: 2px;
+  transition: transform 0.25s ease, opacity 0.25s ease;
+}
+.nav-toggle.open span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+.nav-toggle.open span:nth-child(2) { opacity: 0; }
+.nav-toggle.open span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+
+/* ---- Hero ---- */
+.hero {
+  position: relative;
+  padding: calc(var(--header-h) + 80px) 0 40px;
+  text-align: center;
+  overflow: hidden;
+  background: #FFFFFF;
+}
+.hero-bg { position: absolute; inset: 0; pointer-events: none; }
+.hero-grid {
+  display: none;
+}
+.hero-inner { position: relative; }
+
+.hero-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 16px;
+  border-radius: 9999px;
+  border: 1px solid var(--primary-border);
+  background: var(--primary-bg);
+  color: var(--primary);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 24px;
+}
+.hero-eyebrow .material-symbols-outlined { font-size: 14px; }
+
+.hero-title {
+  font-family: var(--font-head);
+  font-size: clamp(32px, 5vw, 56px);
+  font-weight: 800;
+  line-height: 1.16;
+  letter-spacing: 0;
+  color: var(--text);
+  margin-bottom: 20px;
+}
+.text-primary { color: var(--primary); }
+
+.hero-sub {
+  max-width: 600px;
+  margin: 0 auto 36px;
+  color: var(--text-sub);
+  font-size: clamp(15px, 2vw, 17px);
+  line-height: 1.62;
+}
+
+.hero-actions {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 64px;
+}
+
+.hero-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  max-width: 840px;
+  margin-inline: auto;
+}
+.hero-stats li {
+  padding: 20px 16px;
+  border: 1px solid var(--border-card);
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+  box-shadow: var(--shadow-card);
+}
+.stat-num {
+  display: block;
+  font-family: var(--font-head);
+  font-size: clamp(28px, 3.5vw, 40px);
+  font-weight: 800;
+  color: var(--primary);
+  line-height: 1.1;
+}
+.stat-num::after { content: "+"; font-size: 0.55em; vertical-align: super; }
+.hero-stats span {
+  display: block;
+  margin-top: 4px;
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+/* ---- 通用 Section ---- */
+.section {
+  padding: 92px 0;
+  background: #FFFFFF;
+}
+.section + .section { border-top: 1px solid var(--border); }
+.section-head { text-align: center; margin-bottom: 48px; }
+
+.section-eyebrow {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--primary);
+  margin-bottom: 12px;
+  opacity: 0.75;
+}
+
+.section-title {
+  font-family: var(--font-head);
+  font-size: clamp(24px, 3.4vw, 36px);
+  font-weight: 800;
+  line-height: 1.22;
+  letter-spacing: 0;
+  color: var(--text);
+}
+
+.section-desc {
+  margin-top: 14px;
+  color: var(--text-sub);
+  font-size: 15px;
+  max-width: 580px;
+  line-height: 1.62;
+}
+.section-head .section-desc { margin-inline: auto; }
+
+/* ---- 平台能力入口 ---- */
+.platform-tools {
+  padding-top: 56px;
+  background: #FFFFFF;
+}
+.platform-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+.platform-card {
+  min-height: 210px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  padding: 24px 22px 22px;
+  border: 1px solid var(--border-card);
+  border-radius: var(--radius-lg);
+  background: #FFFFFF;
+  box-shadow: var(--shadow-card);
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.platform-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--primary-border);
+  box-shadow: var(--shadow-hover);
+}
+.platform-icon {
+  width: 46px;
+  height: 46px;
+  display: grid;
+  place-items: center;
+  border-radius: var(--radius);
+  border: 1px solid var(--primary-border);
+  background: #FFFFFF;
+  color: var(--primary);
+  font-size: 23px;
+  margin-bottom: 22px;
+}
+.platform-card-body {
+  display: grid;
+  gap: 8px;
+  min-width: 0;
+}
+.platform-card-body strong {
+  color: var(--text);
+  font-family: var(--font-head);
+  font-size: 18px;
+  font-weight: 800;
+  line-height: 1.25;
+  letter-spacing: 0;
+}
+.platform-card-body span {
+  color: var(--text-sub);
+  font-size: 14px;
+  line-height: 1.62;
+}
+.platform-card-action {
+  position: absolute;
+  top: 24px;
+  right: 22px;
+  width: 28px;
+  height: 28px;
+  display: grid;
+  place-items: center;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  color: var(--text-muted);
+  font-size: 18px;
+  transition: color 0.2s ease, transform 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+}
+.platform-card:hover .platform-card-action {
+  color: var(--primary);
+  background: var(--primary-bg);
+  border-color: var(--primary-border);
+  transform: translateX(2px);
+}
+
+/* ---- 资源入口 ---- */
+.resources { background: #FFFFFF; }
+
+.geoflow-spotlight {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(280px, 0.72fr);
+  gap: 34px;
+  align-items: stretch;
+  margin-bottom: 22px;
+  padding: 42px 44px;
+  border: 1px solid #DCE6F3;
+  border-radius: var(--radius-xl);
+  background: var(--surface);
+  box-shadow: var(--shadow-card);
+  position: relative;
+  overflow: hidden;
+}
+.geoflow-spotlight-main,
+.geoflow-spotlight-side {
+  position: relative;
+  z-index: 1;
+}
+.geoflow-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 18px;
+  padding: 7px 12px;
+  border: 1px solid var(--primary-border);
+  border-radius: 9999px;
+  background: #FFFFFF;
+  color: var(--primary);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+}
+.geoflow-kicker .material-symbols-outlined { font-size: 18px; }
+.geoflow-title {
+  max-width: 760px;
+  font-family: var(--font-head);
+  font-size: clamp(24px, 3vw, 34px);
+  line-height: 1.18;
+  font-weight: 800;
+  color: var(--text);
+  letter-spacing: 0;
+}
+.geoflow-desc {
+  max-width: 820px;
+  margin-top: 18px;
+  color: var(--text-sub);
+  font-size: 16px;
+  line-height: 1.66;
+}
+.geoflow-points {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-top: 28px;
+}
+.geoflow-point {
+  min-height: 124px;
+  padding: 18px 18px 16px;
+  border: 1px solid var(--border-card);
+  border-radius: var(--radius);
+  background: #FFFFFF;
+}
+.geoflow-point strong {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--text);
+  font-size: 15px;
+  font-weight: 800;
+}
+.geoflow-point span {
+  display: block;
+  color: var(--text-sec);
+  font-size: 13px;
+  line-height: 1.55;
+}
+.geoflow-spotlight-side {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 26px;
+  border: 1px solid var(--border-card);
+  border-radius: var(--radius-lg);
+  background: #FFFFFF;
+}
+.geoflow-side-label {
+  color: var(--text-muted);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+}
+.geoflow-spotlight-side ul {
+  display: grid;
+  gap: 14px;
+}
+.geoflow-spotlight-side li {
+  display: grid;
+  grid-template-columns: 20px 1fr;
+  gap: 10px;
+  align-items: start;
+  color: var(--text);
+  font-size: 14px;
+  line-height: 1.55;
+}
+.geoflow-spotlight-side li .material-symbols-outlined {
+  margin-top: 2px;
+  color: var(--primary);
+  font-size: 18px;
+}
+.geoflow-actions {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+}
+.geoflow-actions .resource-link {
+  justify-content: center;
+  padding: 11px 16px;
+  font-size: 14px;
+}
+.geoflow-primary-link {
+  color: #fff;
+  border-color: var(--primary);
+  background: var(--primary);
+  box-shadow: 0 10px 22px rgba(37, 99, 235, 0.16);
+}
+.geoflow-primary-link:hover {
+  background: var(--primary-dark);
+  border-color: var(--primary-dark);
+}
+
+.resource-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+}
+
+.resource-card {
+  padding: 26px;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-card);
+  background: var(--surface);
+  box-shadow: var(--shadow-card);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+  display: flex;
+  flex-direction: column;
+}
+.resource-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-hover);
+  border-color: var(--primary-border);
+}
+
+.resource-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+.resource-icon {
+  width: 44px; height: 44px;
+  display: grid; place-items: center;
+  border-radius: var(--radius-sm);
+  background: var(--primary-bg);
+  color: var(--primary);
+  flex-shrink: 0;
+}
+.resource-icon .material-symbols-outlined { font-size: 22px; }
+.resource-badge {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  padding: 3px 9px;
+  border-radius: 9999px;
+  background: var(--primary-bg);
+  color: var(--primary);
+  border: 1px solid var(--primary-border);
+}
+
+.resource-title {
+  font-family: var(--font-head);
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 10px;
+}
+.resource-desc {
+  font-size: 14px;
+  color: var(--text-sub);
+  line-height: 1.7;
+  flex: 1;
+  margin-bottom: 20px;
+}
+.resource-links {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: auto;
+}
+.resource-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--primary);
+  padding: 6px 12px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--primary-border);
+  background: var(--primary-bg);
+  transition: background 0.15s ease, border-color 0.15s ease;
+}
+.resource-link:hover { background: var(--primary); color: #fff; border-color: var(--primary); }
+.resource-link .material-symbols-outlined { font-size: 14px; }
+.resource-link-secondary {
+  background: transparent;
+  color: var(--text-sub);
+  border-color: var(--border-card);
+}
+.resource-link-secondary:hover { background: var(--primary); color: #fff; border-color: var(--primary); }
+
+/* featured card: 高优先级覆盖 display:flex */
+.resource-card.resource-card-featured {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: 52px 1fr auto;
+  grid-template-rows: auto 1fr;
+  column-gap: 28px;
+  row-gap: 8px;
+  align-items: start;
+  padding: 28px 32px;
+}
+.resource-card.resource-card-featured .resource-header {
+  grid-column: 1; grid-row: 1 / 3;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 0;
+}
+.resource-card.resource-card-featured .resource-title {
+  grid-column: 2; grid-row: 1;
+  font-size: 20px;
+  align-self: end;
+  margin-bottom: 0;
+}
+.resource-card.resource-card-featured .resource-desc {
+  grid-column: 2; grid-row: 2;
+  margin-bottom: 0;
+  font-size: 15px;
+  align-self: start;
+}
+.resource-card.resource-card-featured .resource-links {
+  grid-column: 3; grid-row: 1 / 3;
+  margin-top: 0;
+  align-self: center;
+  flex-direction: column;
+}
+
+/* ---- 皮书 ---- */
+.books { background: #FFFFFF; }
+.book-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+}
+.book-card {
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-card);
+  background: var(--surface);
+  box-shadow: var(--shadow-card);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.book-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-hover); }
+
+.book-body { padding: 24px; display: flex; flex-direction: column; flex: 1; }
+.book-tag {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--primary);
+  margin-bottom: 10px;
+}
+.book-body h3 {
+  font-family: var(--font-head);
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 10px;
+}
+.book-body p {
+  font-size: 13.5px;
+  color: var(--text-sub);
+  line-height: 1.7;
+  flex: 1;
+}
+.book-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: 18px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--primary);
+}
+.book-cta .material-symbols-outlined { font-size: 16px; transition: transform 0.15s ease; }
+.book-card:hover .book-cta .material-symbols-outlined { transform: translateX(3px); }
+.book-cta-muted { color: var(--text-muted); }
+.book-cta-muted .material-symbols-outlined { font-size: 16px; }
+
+/* ---- GEO 大会 ---- */
+.conference { background: #FFFFFF; }
+.conf-card {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: 56px;
+  align-items: center;
+  padding: 52px 56px;
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--primary-border);
+  background: #FFFFFF;
+  box-shadow: var(--shadow-card);
+}
+
+.conf-points {
+  margin: 24px 0 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.conf-points li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  color: var(--text-sub);
+  font-size: 15px;
+}
+.conf-points li .material-symbols-outlined {
+  font-size: 18px;
+  color: var(--primary);
+  flex-shrink: 0;
+  margin-top: 2px;
+  font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}
+
+.conf-visual { display: grid; place-items: center; }
+.conf-badge {
+  width: min(260px, 100%);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  border: 1.5px dashed rgba(37,99,235,0.35);
+  display: grid;
+  place-content: center;
+  text-align: center;
+  gap: 8px;
+  background: #FFFFFF;
+}
+.conf-num {
+  font-family: var(--font-head);
+  font-size: 64px;
+  font-weight: 800;
+  color: var(--primary);
+  line-height: 1;
+}
+.conf-label {
+  font-size: 13px;
+  color: var(--text-sub);
+  letter-spacing: 0.06em;
+}
+
+/* ---- 文章 ---- */
+.articles { background: #FFFFFF; }
+.article-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+.article-card {
+  padding: 28px;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-card);
+  background: var(--surface);
+  box-shadow: var(--shadow-card);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.article-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-hover); }
+.article-meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+.article-source {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-muted);
+  letter-spacing: 0.04em;
+}
+.article-tag {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  padding: 2px 8px;
+  border-radius: 9999px;
+  background: var(--primary-bg);
+  color: var(--primary);
+}
+.article-card h3 {
+  font-family: var(--font-head);
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1.4;
+  margin-bottom: 10px;
+}
+.article-card p {
+  font-size: 13.5px;
+  color: var(--text-sub);
+  line-height: 1.7;
+  flex: 1;
+  margin-bottom: 20px;
+}
+.article-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--primary);
+  margin-top: auto;
+}
+.article-cta .material-symbols-outlined { font-size: 15px; transition: transform 0.15s ease; }
+.article-card:hover .article-cta .material-symbols-outlined { transform: translateX(3px); }
+
+/* ---- 创始人 ---- */
+.founders { background: #FFFFFF; }
+.founder-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  max-width: 860px;
+  margin-inline: auto;
+}
+.founder-card {
+  padding: 36px 32px;
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--border-card);
+  background: var(--surface);
+  box-shadow: var(--shadow-card);
+  text-align: center;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.founder-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-hover); }
+.founder-avatar {
+  width: 72px; height: 72px;
+  margin: 0 auto 18px;
+  border-radius: 50%;
+  display: grid; place-items: center;
+  font-family: var(--font-head);
+  font-size: 28px;
+  font-weight: 800;
+  color: #fff;
+  background: var(--primary);
+}
+.founder-avatar-2 { background: var(--primary-dark); }
+.founder-card h3 {
+  font-family: var(--font-head);
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text);
+}
+.founder-role {
+  margin: 6px 0 14px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--primary);
+}
+.founder-bio {
+  font-size: 14px;
+  color: var(--text-sub);
+  text-align: left;
+  line-height: 1.75;
+  margin-bottom: 18px;
+}
+.founder-links { display: flex; justify-content: center; gap: 8px; }
+.founder-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--primary);
+  padding: 6px 14px;
+  border-radius: var(--radius);
+  border: 1px solid var(--primary-border);
+  background: var(--primary-bg);
+  transition: background 0.15s, border-color 0.15s;
+}
+.founder-link:hover { background: var(--primary); color: #fff; border-color: var(--primary); }
+.founder-link .material-symbols-outlined { font-size: 14px; }
+
+/* ---- CTA ---- */
+.cta-band { padding: 0 0 88px; }
+.cta-inner {
+  text-align: center;
+  padding: 64px 40px;
+  border-radius: var(--radius-xl);
+  background: var(--surface);
+  border: 1px solid var(--border-card);
+  box-shadow: var(--shadow-card);
+  position: relative;
+  overflow: hidden;
+}
+.cta-icon {
+  display: block;
+  font-size: 40px;
+  margin: 0 auto 16px;
+  color: var(--primary);
+  font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 48;
+}
+.cta-inner h2 {
+  font-family: var(--font-head);
+  font-size: clamp(22px, 3vw, 30px);
+  font-weight: 800;
+  color: var(--text);
+  margin-bottom: 12px;
+}
+.cta-inner p {
+  font-size: 15px;
+  color: var(--text-sub);
+  max-width: 480px;
+  margin-inline: auto;
+  margin-bottom: 32px;
+}
+.cta-actions { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; }
+
+/* ---- Footer ---- */
+.site-footer {
+  border-top: 1px solid var(--border);
+  background: #FFFFFF;
+  padding: 56px 0 0;
+}
+.footer-inner {
+  display: grid;
+  grid-template-columns: 1.1fr 2fr;
+  gap: 48px;
+  padding-bottom: 40px;
+}
+.footer-brand .logo { margin-bottom: 12px; }
+.footer-brand p {
+  font-size: 14px;
+  color: var(--text-sub);
+  margin-bottom: 4px;
+}
+.footer-tagline {
+  font-size: 13px;
+  color: var(--text-muted);
+}
+.footer-links {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+.footer-links h4 {
+  font-family: var(--font-head);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 14px;
+}
+.footer-links a {
+  display: block;
+  margin-bottom: 10px;
+  font-size: 14px;
+  color: var(--text-sub);
+  transition: color 0.15s ease;
+}
+.footer-links a:hover { color: var(--primary); }
+.footer-bottom {
+  border-top: 1px solid var(--border);
+  padding: 18px 0;
+  text-align: center;
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+/* ---- 滚动显现 ---- */
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.reveal.visible { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .reveal { opacity: 1; transform: none; transition: none; }
+}
+
+/* ===== 响应式 ===== */
+@media (max-width: 1100px) {
+  .platform-grid { grid-template-columns: repeat(2, 1fr); }
+  .geoflow-spotlight {
+    grid-template-columns: 1fr;
+    padding: 36px;
+  }
+  .geoflow-points { grid-template-columns: 1fr; }
+  .geoflow-point { min-height: auto; }
+  .resource-grid { grid-template-columns: repeat(2, 1fr); }
+  .resource-card-featured { grid-template-columns: 56px 1fr auto; column-gap: 24px; }
+  .book-grid { grid-template-columns: repeat(2, 1fr); }
+  .conf-card { grid-template-columns: 1fr; padding: 40px 36px; gap: 36px; }
+  .conf-visual { order: -1; }
+  .conf-badge { width: 200px; }
+  .conf-num { font-size: 52px; }
+}
+
+@media (max-width: 768px) {
+  .pc-only { display: none; }
+  .section { padding: 64px 0; }
+  .container { width: calc(100% - 40px); }
+  .hero { padding: calc(var(--header-h) + 52px) 0 60px; }
+  .hero-stats { grid-template-columns: repeat(2, 1fr); margin-top: 48px; }
+  .hero-actions { flex-direction: column; align-items: center; }
+  .hero-actions .btn { width: 100%; max-width: 300px; justify-content: center; }
+  .article-grid { grid-template-columns: 1fr; }
+  .founder-grid { grid-template-columns: 1fr; }
+  .footer-inner { grid-template-columns: 1fr; gap: 32px; }
+  .footer-links { grid-template-columns: 1fr 1fr; gap: 24px; }
+  .cta-inner { padding: 44px 24px; }
+  .cta-actions { flex-direction: column; align-items: center; }
+  .cta-actions .btn { width: 100%; max-width: 300px; justify-content: center; }
+
+  /* 移动端导航 */
+  .nav-toggle { display: block; }
+  .nav-menu {
+    position: fixed;
+    top: var(--header-h);
+    left: 0; right: 0;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    background: rgba(255,255,255,0.97);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+    padding: 8px 20px 20px;
+    transform: translateY(-8px);
+    opacity: 0;
+    visibility: hidden;
+    transition: transform 0.25s ease, opacity 0.25s ease, visibility 0.25s;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+  }
+  .nav-menu.open { transform: none; opacity: 1; visibility: visible; }
+  .nav-menu li { border-bottom: 1px solid var(--border); }
+  .nav-menu li:last-child { border-bottom: 0; margin-top: 12px; }
+  .nav-menu a { display: block; padding: 14px 8px; font-size: 15px; border-radius: 0; }
+  .nav-menu .nav-cta { text-align: center; border-radius: var(--radius); margin: 0; }
+}
+
+@media (max-width: 600px) {
+  .book-grid { grid-template-columns: 1fr; }
+  .platform-grid { grid-template-columns: 1fr; }
+  .platform-card {
+    min-height: auto;
+    padding: 22px 20px 20px;
+  }
+  .platform-icon {
+    width: 44px;
+    height: 44px;
+    font-size: 22px;
+    margin-bottom: 18px;
+  }
+  .platform-card-action {
+    top: 22px;
+    right: 20px;
+  }
+  .geoflow-spotlight {
+    padding: 28px 24px;
+    border-radius: var(--radius-lg);
+  }
+  .geoflow-title { font-size: 24px; }
+  .geoflow-desc { font-size: 15px; }
+  .geoflow-spotlight-side { padding: 22px; }
+  .resource-grid { grid-template-columns: 1fr; }
+  .resource-card-featured {
+    display: flex;
+    flex-direction: column;
+  }
+  .footer-links { grid-template-columns: 1fr; }
+  .hero-stats { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+}
+
+
+
+/* ---- GEOrank 自定义首页导航对齐公共头部 2026-06-16 ---- */
+.georank-platform-header {
+  height: 64px;
+  background: rgba(255,255,255,0.86);
+  border-bottom-color: #F1F5F9;
+  box-shadow: 0 10px 40px rgba(25,27,35,0.04);
+}
+.georank-platform-nav {
+  width: 100%;
+  max-width: 1280px;
+  height: 64px;
+  padding-inline: 24px;
+  margin-inline: auto;
+  justify-content: flex-start;
+  gap: 32px;
+}
+.georank-platform-logo {
+  width: 90px;
+  min-width: 90px;
+  color: #1D4ED8;
+  font-family: Manrope, Inter, sans-serif;
+  font-size: 20px;
+  font-weight: 800;
+  line-height: 20px;
+  letter-spacing: 0;
+}
+.georank-platform-logo .logo-text {
+  color: #1D4ED8;
+}
+.georank-platform-menu {
+  flex: 0 0 auto;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 20px;
+  min-width: 0;
+}
+.georank-platform-menu a {
+  display: block;
+  position: relative;
+  padding: 0;
+  border-radius: 0;
+  color: #475569;
+  font-family: Manrope, Inter, sans-serif;
+  font-size: 15.2px;
+  font-weight: 750;
+  line-height: 15.2px;
+  letter-spacing: 0;
+  white-space: nowrap;
+}
+.georank-platform-menu a:hover {
+  background: transparent;
+  color: #2563EB;
+}
+.georank-platform-menu a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -23px;
+  height: 3px;
+  border-radius: 999px;
+  background: #2563EB;
+  opacity: 0;
+  transform: scaleX(0.7);
+  transition: opacity 0.16s ease, transform 0.16s ease;
+}
+.georank-platform-menu a:hover::after {
+  opacity: 1;
+  transform: scaleX(1);
+}
+.georank-profile-link {
+  flex: 0 0 auto;
+  margin-left: auto;
+  width: 44px;
+  height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #DBE3EF;
+  border-radius: 15.2px;
+  color: #334155;
+  background: #FFFFFF;
+  box-shadow: 0 10px 26px rgba(15,23,42,0.04);
+  transition: border-color 0.16s ease, color 0.16s ease, transform 0.16s ease;
+}
+.georank-profile-link:hover {
+  border-color: #BFD7FF;
+  color: #2563EB;
+  transform: translateY(-1px);
+}
+.georank-profile-link .material-symbols-outlined {
+  font-size: 25px;
+}
+.reveal {
+  opacity: 1;
+  transform: none;
+}
+@media (max-width: 980px) {
+  .georank-platform-nav {
+    width: 100%;
+    max-width: none;
+    padding-inline: 20px;
+    gap: 24px;
+  }
+  .georank-platform-menu {
+    gap: 18px;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+  .georank-platform-menu::-webkit-scrollbar {
+    display: none;
+  }
+}
+@media (max-width: 768px) {
+  .georank-platform-nav {
+    overflow: hidden;
+    gap: 18px;
+    padding-inline: 16px;
+  }
+  .site-header .georank-platform-menu {
+    position: static;
+    flex-direction: row;
+    align-items: center;
+    background: transparent;
+    backdrop-filter: none;
+    border-bottom: 0;
+    box-shadow: none;
+    padding: 0;
+    transform: none;
+    opacity: 1;
+    visibility: visible;
+  }
+  .georank-platform-menu li,
+  .georank-platform-menu li:last-child {
+    flex: 0 0 auto;
+    border-bottom: 0;
+    margin-top: 0;
+  }
+  .site-header .georank-platform-menu a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 36px;
+    padding: 0;
+    font-size: 14px;
+    line-height: 14px;
+  }
+  .georank-profile-link {
+    width: 40px;
+    height: 40px;
+    border-radius: 14px;
+  }
+}
+@media (max-width: 520px) {
+  .georank-platform-nav {
+    padding-inline: 12px;
+    gap: 14px;
+  }
+  .georank-platform-logo {
+    width: 80px;
+    min-width: 80px;
+    font-size: 18px;
+  }
+  .georank-platform-menu {
+    gap: 14px;
+  }
+  .georank-profile-link {
+    width: 38px;
+    height: 38px;
+  }
+}

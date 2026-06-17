@@ -37,6 +37,7 @@ from app.services.settings_security import (
     mask_setting_value,
 )
 from app.services.runtime_settings import (
+    DEFAULT_HOMEPAGE_RELEASE_ID,
     get_diagnostic_rule_config,
     get_ai_usage_policy_config,
     get_ai_runtime_config,
@@ -2799,9 +2800,11 @@ async def update_frontend_modules_admin(
 # ===== 自定义首页 =====
 
 def _serialize_homepage_release(release: HomepageRelease) -> dict:
+    is_builtin = str(release.id) == DEFAULT_HOMEPAGE_RELEASE_ID
     return {
         "id": str(release.id),
         "title": release.title,
+        "is_builtin": is_builtin,
         "source_type": release.source_type.value if hasattr(release.source_type, "value") else release.source_type,
         "status": release.status.value if hasattr(release.status, "value") else release.status,
         "entry_path": release.entry_path,
@@ -3008,6 +3011,8 @@ async def restore_default_homepage_admin(db: DbSession, admin: AdminUser):
 @router.delete("/homepage/releases/{release_id}")
 async def delete_homepage_release_admin(release_id: uuid.UUID, db: DbSession, _: AdminUser):
     release = await _load_homepage_release_or_404(db, release_id)
+    if str(release.id) == DEFAULT_HOMEPAGE_RELEASE_ID:
+        raise HTTPException(status_code=400, detail="内置首页版本不能删除")
     if release.status == HomepageReleaseStatus.ACTIVE:
         raise HTTPException(status_code=400, detail="当前启用版本不能删除，请先恢复默认首页或启用其他版本")
 

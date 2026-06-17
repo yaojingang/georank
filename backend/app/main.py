@@ -2,6 +2,8 @@
 GEOrank — FastAPI 主入口
 """
 from contextlib import asynccontextmanager
+from datetime import datetime
+import json
 import logging
 import time
 import uuid
@@ -88,6 +90,62 @@ async def _seed_settings(db):
     await db.commit()
 
 
+async def _seed_default_homepage_release(db):
+    """初始化开源版内置首页版本（幂等：不覆盖用户后续操作）。"""
+    from sqlalchemy import select
+
+    from app.models.homepage import HomepageRelease, HomepageReleaseStatus, HomepageSourceType
+    from app.services.homepage_assets import ENTRY_PATH, homepage_root, public_release_path
+    from app.services.runtime_settings import DEFAULT_HOMEPAGE_RELEASE_ID, DEFAULT_HOMEPAGE_RELEASE_TITLE
+
+    release_uuid = uuid.UUID(DEFAULT_HOMEPAGE_RELEASE_ID)
+    result = await db.execute(select(HomepageRelease).where(HomepageRelease.id == release_uuid))
+    if result.scalar_one_or_none():
+        return
+
+    root = homepage_root()
+    public_dir = public_release_path(root, DEFAULT_HOMEPAGE_RELEASE_ID)
+    if not (public_dir / ENTRY_PATH).is_file():
+        return
+
+    manifest_path = root / "releases" / DEFAULT_HOMEPAGE_RELEASE_ID / "manifest.json"
+    manifest = {}
+    if manifest_path.is_file():
+        try:
+            manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+        except json.JSONDecodeError:
+            manifest = {}
+
+    files = [path for path in public_dir.rglob("*") if path.is_file()]
+    created_at = datetime.utcnow()
+    raw_created_at = manifest.get("created_at")
+    if isinstance(raw_created_at, str) and raw_created_at.strip():
+        try:
+            created_at = datetime.fromisoformat(raw_created_at.replace("Z", "+00:00")).replace(tzinfo=None)
+        except ValueError:
+            pass
+
+    db.add(
+        HomepageRelease(
+            id=release_uuid,
+            title=manifest.get("title") or DEFAULT_HOMEPAGE_RELEASE_TITLE,
+            source_type=HomepageSourceType.ZIP_PACKAGE,
+            status=HomepageReleaseStatus.ACTIVE,
+            entry_path=manifest.get("entry_path") or ENTRY_PATH,
+            storage_path=str(root / "releases" / DEFAULT_HOMEPAGE_RELEASE_ID),
+            file_count=int(manifest.get("file_count") or len(files)),
+            compressed_size=int(manifest.get("compressed_size") or 0),
+            extracted_size=int(manifest.get("extracted_size") or sum(path.stat().st_size for path in files)),
+            sha256=manifest.get("sha256"),
+            release_manifest=manifest,
+            created_by=None,
+            created_at=created_at,
+            activated_at=created_at,
+        )
+    )
+    await db.commit()
+
+
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     """应用生命周期 — 启动时初始化 DB 和默认配置"""
@@ -97,6 +155,7 @@ async def lifespan(app: FastAPI):
     async with async_session() as db:
         try:
             await _seed_settings(db)
+            await _seed_default_homepage_release(db)
         except Exception as e:
             print(f"[startup] settings init skipped: {e}")
 

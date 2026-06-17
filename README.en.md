@@ -21,6 +21,8 @@ That creates a new set of questions:
 
 GEOrank turns those disconnected tasks into a structured workflow: diagnose, ask, plan, expand, structure, and manage.
 
+The open-source build shows the built-in GEO workbench homepage at `/` by default. The original company directory remains available at `/companies`, and you can upload or switch custom homepage releases from the admin settings panel.
+
 ## Use Cases
 
 - **GEO research and market tracking**: organize companies, tools, services, experts, tutorials, and examples.
@@ -84,7 +86,7 @@ It does not include:
 - User conversations.
 - Customer plans or diagnostic records.
 - Keyword packs or commercial datasets.
-- Runtime custom-homepage releases uploaded through the admin console.
+- Runtime custom-homepage releases uploaded by users through the admin console, except for the built-in default homepage included with the repository.
 
 ## Disclaimer
 

@@ -38,9 +38,19 @@ backend/celerybeat-schedule
 backend/celerybeat.pid
 runtime/homepages/*
 !runtime/homepages/.gitkeep
+!runtime/homepages/releases/
+runtime/homepages/releases/*
+!runtime/homepages/releases/f7e16e7c-e1aa-4e39-951b-4c274dd05175/
+!runtime/homepages/releases/f7e16e7c-e1aa-4e39-951b-4c274dd05175/**
 !runtime/homepages/public/
 runtime/homepages/public/*
 !runtime/homepages/public/.gitkeep
+!runtime/homepages/public/active/
+!runtime/homepages/public/active/**
+!runtime/homepages/public/releases/
+runtime/homepages/public/releases/*
+!runtime/homepages/public/releases/f7e16e7c-e1aa-4e39-951b-4c274dd05175/
+!runtime/homepages/public/releases/f7e16e7c-e1aa-4e39-951b-4c274dd05175/**
 
 # Docker volumes
 pg_data/

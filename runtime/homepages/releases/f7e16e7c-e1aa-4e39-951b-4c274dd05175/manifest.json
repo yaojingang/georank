@@ -1,0 +1,30 @@
+{
+  "id": "f7e16e7c-e1aa-4e39-951b-4c274dd05175",
+  "title": "首页 8 模块工作台入口 2026-06-16",
+  "source_type": "zip_package",
+  "entry_path": "index.html",
+  "storage_path": "/app/runtime/homepages/releases/f7e16e7c-e1aa-4e39-951b-4c274dd05175",
+  "public_path": "/app/runtime/homepages/public/releases/f7e16e7c-e1aa-4e39-951b-4c274dd05175",
+  "file_count": 3,
+  "compressed_size": 14105,
+  "extracted_size": 61401,
+  "sha256": "8e03d99ce95cfffb003a48258eb76457aa75869297e0f7e16655a1c9b5eaba99",
+  "files": [
+    {
+      "path": "css/style.css",
+      "size": 30971,
+      "sha256": "923a1b019b0822052121a46f6e1418e4a5727a9870815cc39b47c924fcea42bb"
+    },
+    {
+      "path": "favicon.svg",
+      "size": 513,
+      "sha256": "4ed02e3c7de9b2c1b2efd461eeec75fd7e56b6272bad3bc2a37bb8e56fb2bce8"
+    },
+    {
+      "path": "index.html",
+      "size": 29917,
+      "sha256": "7201e92b3753defa4957a0df92512db4a70a9abc745537ceb816d1af9ff305f7"
+    }
+  ],
+  "created_at": "2026-06-16T06:58:21.368734Z"
+}
