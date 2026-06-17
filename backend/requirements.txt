@@ -21,7 +21,7 @@ langchain-community==0.3.14
 
 # ===== Vector Database =====
 qdrant-client==1.12.1
-numpy==2.2.1
+numpy>=1.26.4,<2
 
 # ===== Knowledge Graph =====
 neo4j==5.27.0
