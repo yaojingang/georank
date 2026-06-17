@@ -15,18 +15,19 @@
 
     <script src="/js/tailwind.config.js"></script>
     <link rel="stylesheet" href="/css/common.css?v=20260613-common-hidden-fix">
-    <link rel="stylesheet" href="/css/experts.css?v=20260613-front-polish2">
+    <link rel="stylesheet" href="/css/experts.css?v=20260617-real-experts">
 </head>
 <body class="bg-white text-on-surface antialiased">
     <div id="header-container"></div>
 
     <main class="experts-page pt-24 md:pt-28 pb-20 max-w-7xl mx-auto px-4 md:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
         <div class="lg:col-span-8">
+            <div data-experts-list-view>
             <section class="experts-hero">
                 <div class="experts-hero-copy-block">
                     <p class="experts-eyebrow">GEO Expert Channel</p>
                     <h1>GEO 专家频道</h1>
-                    <p class="experts-hero-copy">按 GEO 落地问题筛选专家，把策略、技术、内容、品牌治理和行业经验放到一个可扫描的推荐列表里。</p>
+                    <p class="experts-hero-copy">推荐 5 位真实 GEO 与 AI 实践专家，把方法论、AI 工作流、出海 SEO、流量增长和企业咨询经验放到一个可进入详情的专家目录里。</p>
                 </div>
                 <div class="experts-hero-tabs" aria-label="专家频道排序">
                     <button type="button" class="experts-hero-tab is-active" data-expert-sort="recommended" aria-pressed="true">推荐专家</button>
@@ -42,128 +43,23 @@
                 </div>
                 <div class="experts-filter-group" aria-label="专家方向筛选">
                     <button type="button" class="expert-filter is-active" data-expert-filter="all" aria-pressed="true" aria-controls="expert-list">全部</button>
-                    <button type="button" class="expert-filter" data-expert-filter="strategy" aria-pressed="false" aria-controls="expert-list">策略</button>
-                    <button type="button" class="expert-filter" data-expert-filter="technical" aria-pressed="false" aria-controls="expert-list">技术</button>
-                    <button type="button" class="expert-filter" data-expert-filter="content" aria-pressed="false" aria-controls="expert-list">内容</button>
-                    <button type="button" class="expert-filter" data-expert-filter="reputation" aria-pressed="false" aria-controls="expert-list">品牌治理</button>
-                    <button type="button" class="expert-filter" data-expert-filter="industry" aria-pressed="false" aria-controls="expert-list">行业</button>
+                    <button type="button" class="expert-filter" data-expert-filter="methodology" aria-pressed="false" aria-controls="expert-list">方法论</button>
+                    <button type="button" class="expert-filter" data-expert-filter="ai-workflow" aria-pressed="false" aria-controls="expert-list">AI 工作流</button>
+                    <button type="button" class="expert-filter" data-expert-filter="seo-practice" aria-pressed="false" aria-controls="expert-list">SEO/GEO</button>
+                    <button type="button" class="expert-filter" data-expert-filter="traffic-growth" aria-pressed="false" aria-controls="expert-list">流量增长</button>
+                    <button type="button" class="expert-filter" data-expert-filter="overseas" aria-pressed="false" aria-controls="expert-list">出海 GEO</button>
                 </div>
             </section>
 
             <section id="expert-list" class="experts-list" aria-label="专家推荐列表">
-                <article class="expert-card" data-category="strategy" data-keywords="策略 路线图 诊断 方案 GEO 增长">
-                    <div class="expert-avatar">LC</div>
-                    <div class="expert-card-main">
-                        <div class="expert-card-heading">
-                            <h2>林澈</h2>
-                            <span>GEO 策略顾问</span>
-                        </div>
-                        <p class="expert-summary">长期服务 B2B SaaS 与教育科技团队，擅长把 GEO 诊断结论转成 30/60/90 天执行路线图，帮助团队判断官网、内容、Schema 与知识库的优先级、资源投入和验收口径。</p>
-                        <div class="expert-keyword-tags" aria-label="专家关键词">
-                            <span>策略路线</span>
-                            <span>诊断拆解</span>
-                            <span>30/60/90 天</span>
-                            <span>资源优先级</span>
-                            <span>增长节奏</span>
-                        </div>
-                    </div>
-                </article>
-
-                <article class="expert-card" data-category="technical" data-keywords="技术 schema json-ld llms.txt 爬虫 抓取">
-                    <div class="expert-avatar">QY</div>
-                    <div class="expert-card-main">
-                        <div class="expert-card-heading">
-                            <h2>秦越</h2>
-                            <span>Schema 与技术标记专家</span>
-                        </div>
-                        <p class="expert-summary">关注 JSON-LD、llms.txt、页面可抓取性和结构化标记，能把已有官网内容转成更清晰的 AI 可读信号，并给技术团队输出可执行的 Schema 改造清单。</p>
-                        <div class="expert-keyword-tags" aria-label="专家关键词">
-                            <span>JSON-LD</span>
-                            <span>llms.txt</span>
-                            <span>Schema</span>
-                            <span>抓取检查</span>
-                            <span>技术清单</span>
-                        </div>
-                    </div>
-                </article>
-
-                <article class="expert-card" data-category="content" data-keywords="内容 FAQ 文章 教程 问答 标题">
-                    <div class="expert-avatar">ZL</div>
-                    <div class="expert-card-main">
-                        <div class="expert-card-heading">
-                            <h2>周岚</h2>
-                            <span>AI 友好内容架构师</span>
-                        </div>
-                        <p class="expert-summary">擅长把产品介绍、案例、FAQ 和教程重构为 AI 更容易理解、摘要和引用的页面结构，尤其适合内容资产较多但缺少直答模块、事实颗粒度和问答入口的团队。</p>
-                        <div class="expert-keyword-tags" aria-label="专家关键词">
-                            <span>内容结构</span>
-                            <span>FAQ</span>
-                            <span>直答模块</span>
-                            <span>教程频道</span>
-                            <span>可引用事实</span>
-                        </div>
-                    </div>
-                </article>
-
-                <article class="expert-card" data-category="reputation" data-keywords="品牌 治理 信任 引用 口碑 权威">
-                    <div class="expert-avatar">HS</div>
-                    <div class="expert-card-main">
-                        <div class="expert-card-heading">
-                            <h2>何山</h2>
-                            <span>品牌可信度顾问</span>
-                        </div>
-                        <p class="expert-summary">专注 AI 回答中的品牌可信度、引用来源、案例证据和风险表述，帮助品牌补齐可信来源、作者主体和第三方资料页，降低被误解或低估的概率。</p>
-                        <div class="expert-keyword-tags" aria-label="专家关键词">
-                            <span>品牌治理</span>
-                            <span>可信来源</span>
-                            <span>案例证据</span>
-                            <span>实体识别</span>
-                            <span>口碑风险</span>
-                        </div>
-                    </div>
-                </article>
-
-                <article class="expert-card" data-category="industry" data-keywords="行业 SaaS 教育 电商 本地服务 案例">
-                    <div class="expert-avatar">MY</div>
-                    <div class="expert-card-main">
-                        <div class="expert-card-heading">
-                            <h2>孟远</h2>
-                            <span>行业 GEO 案例顾问</span>
-                        </div>
-                        <p class="expert-summary">擅长按行业拆解 GEO 场景，围绕 SaaS、教育、电商、本地服务等不同业务类型梳理同行案例、推荐场景、关键词和转化页结构。</p>
-                        <div class="expert-keyword-tags" aria-label="专家关键词">
-                            <span>SaaS</span>
-                            <span>教育</span>
-                            <span>电商</span>
-                            <span>竞品对标</span>
-                            <span>转化页</span>
-                        </div>
-                    </div>
-                </article>
-
-                <article class="expert-card" data-category="technical" data-keywords="知识库 GEO 知识库 RAG 原子化事实 文档 清洗">
-                    <div class="expert-avatar">XR</div>
-                    <div class="expert-card-main">
-                        <div class="expert-card-heading">
-                            <h2>许然</h2>
-                            <span>GEO 知识库专家</span>
-                        </div>
-                        <p class="expert-summary">负责把官网、PDF、Word、FAQ 和案例资料清洗成结构化知识库，沉淀原子化事实和 RAG 内容规范，让 AI 能稳定检索、引用和复述品牌事实。</p>
-                        <div class="expert-keyword-tags" aria-label="专家关键词">
-                            <span>知识库</span>
-                            <span>资料清洗</span>
-                            <span>原子化事实</span>
-                            <span>RAG</span>
-                            <span>AI 可读文档</span>
-                        </div>
-                    </div>
-                </article>
-
                 <div class="experts-empty-state is-hidden" data-experts-empty role="status" aria-live="polite">
                     <h2>没有匹配的专家</h2>
                     <p>可以换一个关键词，或切回“全部”后重新筛选。</p>
                 </div>
             </section>
+            </div>
+
+            <section class="expert-detail-view is-hidden" data-expert-detail-view aria-live="polite"></section>
         </div>
 
         <aside class="lg:col-span-4 experts-sidebar space-y-10">
@@ -171,7 +67,7 @@
                 <div class="relative z-10">
                     <span class="experts-sidebar-eyebrow">推荐逻辑</span>
                     <h2>先看问题，再找专家</h2>
-                    <p>专家频道不是履历墙，而是把常见 GEO 卡点拆成可筛选方向：路线图、技术标记、内容结构、可信来源和行业案例。</p>
+                    <p>专家频道不是履历墙，而是把 GEO 方法论、搜索营销、AI 工作流、出海增长和企业服务经验拆成可扫描的人物资料。</p>
                     <a href="/tools" class="experts-sidebar-link">
                         先用工具自查
                         <span class="material-symbols-outlined">arrow_forward</span>
@@ -189,32 +85,32 @@
                     <button type="button" class="expert-direction-button is-active" data-expert-filter="all" aria-pressed="true">
                         <span class="material-symbols-outlined">hub</span>
                         <span>全部专家</span>
-                        <strong data-expert-count="all">6</strong>
+                        <strong data-expert-count="all">5</strong>
                     </button>
-                    <button type="button" class="expert-direction-button" data-expert-filter="strategy" aria-pressed="false">
-                        <span class="material-symbols-outlined">route</span>
-                        <span>策略路线</span>
-                        <strong data-expert-count="strategy">1</strong>
+                    <button type="button" class="expert-direction-button" data-expert-filter="methodology" aria-pressed="false">
+                        <span class="material-symbols-outlined">psychology</span>
+                        <span>方法论</span>
+                        <strong data-expert-count="methodology">1</strong>
                     </button>
-                    <button type="button" class="expert-direction-button" data-expert-filter="technical" aria-pressed="false">
-                        <span class="material-symbols-outlined">data_object</span>
-                        <span>技术标记</span>
-                        <strong data-expert-count="technical">2</strong>
+                    <button type="button" class="expert-direction-button" data-expert-filter="ai-workflow" aria-pressed="false">
+                        <span class="material-symbols-outlined">auto_awesome</span>
+                        <span>AI 工作流</span>
+                        <strong data-expert-count="ai-workflow">1</strong>
                     </button>
-                    <button type="button" class="expert-direction-button" data-expert-filter="content" aria-pressed="false">
-                        <span class="material-symbols-outlined">article</span>
-                        <span>内容结构</span>
-                        <strong data-expert-count="content">1</strong>
+                    <button type="button" class="expert-direction-button" data-expert-filter="seo-practice" aria-pressed="false">
+                        <span class="material-symbols-outlined">travel_explore</span>
+                        <span>SEO/GEO</span>
+                        <strong data-expert-count="seo-practice">1</strong>
                     </button>
-                    <button type="button" class="expert-direction-button" data-expert-filter="reputation" aria-pressed="false">
-                        <span class="material-symbols-outlined">verified</span>
-                        <span>品牌治理</span>
-                        <strong data-expert-count="reputation">1</strong>
+                    <button type="button" class="expert-direction-button" data-expert-filter="traffic-growth" aria-pressed="false">
+                        <span class="material-symbols-outlined">monitoring</span>
+                        <span>流量增长</span>
+                        <strong data-expert-count="traffic-growth">1</strong>
                     </button>
-                    <button type="button" class="expert-direction-button" data-expert-filter="industry" aria-pressed="false">
-                        <span class="material-symbols-outlined">cases</span>
-                        <span>行业案例</span>
-                        <strong data-expert-count="industry">1</strong>
+                    <button type="button" class="expert-direction-button" data-expert-filter="overseas" aria-pressed="false">
+                        <span class="material-symbols-outlined">public</span>
+                        <span>出海 GEO</span>
+                        <strong data-expert-count="overseas">1</strong>
                     </button>
                 </div>
             </section>

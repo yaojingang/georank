@@ -4,7 +4,7 @@
 
 GEOrank is an open-source workbench for Generative Engine Optimization. It helps teams diagnose AI search visibility, turn insights into Q&A and action plans, expand keyword assets, generate structured content tools, and manage the workflow through a self-hosted admin console.
 
-This repository includes the product code, engineering structure, configuration templates, and demo data required to run GEOrank locally. It does not include private production data, real expert profiles, real tutorial assets, user conversations, generated customer plans, keyword packs, database dumps, object storage files, or API keys.
+This repository includes the product code, engineering structure, configuration templates, demo data, and the built-in public expert profiles used by the experts channel. It does not include private production data, non-public expert content, real tutorial assets, user conversations, generated customer plans, keyword packs, database dumps, object storage files, or API keys.
 
 ## Why GEOrank?
 
@@ -42,7 +42,7 @@ The open-source build shows the built-in GEO workbench homepage at `/` by defaul
 | GEO Action Plans | Generate executable 30/60/90-day optimization plans from goals, websites, resources, and constraints |
 | Keyword Expansion | Build reusable keyword assets across topics, questions, scenarios, commercial intent, and recommendation patterns |
 | GEO Tools | Generate JSON-LD, llms.txt, GEO titles, AI-friendliness checks, and knowledge-base drafts |
-| Experts | Present public expert profiles, expertise areas, and consultation directions |
+| Experts | Present 5 built-in public GEO and AI expert profiles with detail pages |
 | Tutorials | Organize GEO knowledge, technical markup, content structure, governance, and practical examples |
 | Admin Console | Manage content, settings, API providers, usage policy, modules, homepage releases, and analytics snippets |
 
@@ -81,7 +81,7 @@ It does not include:
 
 - Real API keys.
 - Production databases, vector stores, graph data, or object storage files.
-- Real expert profiles.
+- Non-public expert profiles or private expert content maintained in the admin console.
 - Real tutorial content.
 - User conversations.
 - Customer plans or diagnostic records.
